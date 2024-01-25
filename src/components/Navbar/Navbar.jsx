@@ -10,7 +10,7 @@ import {
   Icon,
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
-import images from "../../assets/images.png";
+import logo from "../../assets/E.ico.png";
 import useStyles from "./styles";
 import { Link } from "react-router-dom";
 
@@ -28,7 +28,7 @@ const Navbar = ({ totalItems }) => {
             color="inherit"
           >
             <img
-              src={images}
+              src={logo}
               alt="commerce.js"
               height="25px"
               className={classes.image}

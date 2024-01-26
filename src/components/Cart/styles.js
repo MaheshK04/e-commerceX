@@ -1,9 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { CenterFocusStrong } from "@material-ui/icons";
 
 export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   title: {
-    marginTop: "5%",
+    marginTop: "3%",
   },
   emptyButton: {
     minWidth: "150px",
@@ -26,4 +27,8 @@ export default makeStyles((theme) => ({
     width: "100%",
     justifyContent: "space-between",
   },
+  subtotal: {
+    marginTop: "5%",
+    textAlign:'center'
+  }
 }));

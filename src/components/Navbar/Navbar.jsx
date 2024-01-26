@@ -7,15 +7,20 @@ import {
   MenuItem,
   Menu,
   Typography,
-  Icon,
+  TextField, // Import TextField for the search bar
 } from "@material-ui/core";
-import { ShoppingCart } from "@material-ui/icons";
+import { ShoppingCart, Search as SearchIcon } from "@material-ui/icons"; // Import SearchIcon
 import logo from "../../assets/E.ico.png";
 import useStyles from "./styles";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 
 const Navbar = ({ totalItems }) => {
   const classes = useStyles();
+
+  const location = useLocation();
+
+  
+
   return (
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
@@ -29,24 +34,51 @@ const Navbar = ({ totalItems }) => {
           >
             <img
               src={logo}
-              alt="commerce.js"
+              alt="Commerce"
               height="25px"
               className={classes.image}
             />
             Commerce
           </Typography>
-          <div className={classes.grow} />
-          <div className={classes.button}>
-            <IconButton
-              component={Link}
-              to="/cart"
-              aria-label="Show cart items"
-              color="inherit"
-            >
-              <Badge badgeContent={totalItems} color="secondary"></Badge>
-              <ShoppingCart />
-            </IconButton>
+
+          {/* Search Bar */}
+          <div className={classes.search}>
+            <TextField
+              placeholder="Search..."
+              onChange={(e) => e.target.value}
+              InputProps={{
+                endAdornment: (
+                  <IconButton>
+                    <SearchIcon />
+                  </IconButton>
+                ),
+              }}
+            />
           </div>
+
+          {/* Spacer to push items to the right */}
+          <div className={classes.grow} />
+
+          {/* Contact Menu Item */}
+          <MenuItem component={Link} to="/contact">
+            Contact
+          </MenuItem>
+
+          {/* Shopping Cart Icon */}
+          {(location.pathname === "/"|| location.pathname==='/contact'|| location.pathname==='/shipping')  && (
+            <div className={classes.button}>
+              <IconButton
+                component={Link}
+                to="/cart"
+                aria-label="Show cart items"
+                color="inherit"
+              >
+                <Badge badgeContent={totalItems} color="secondary">
+                  <ShoppingCart />
+                </Badge>
+              </IconButton>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </>
